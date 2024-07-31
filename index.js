@@ -15,6 +15,7 @@ document.getElementById("fetch-button").addEventListener("click", fetchData);
 // }
 
 async function fetchData() {
+  renderLoadingState();
   try {
     const response = await fetch("https://dog.ceo/api/breeds/image/random");
     if (!response.ok) {
