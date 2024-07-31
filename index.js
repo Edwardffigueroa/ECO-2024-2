@@ -1,7 +1,44 @@
 document.getElementById("fetch-button").addEventListener("click", fetchData);
 
-function fetchData() {
-  // write your fetch here
+// function fetchData() {
+//   renderLoadingState();
+//   fetch("https://dog.ceo/api/breeds/image/random")
+//     .then((response) => {
+//       console.log(response);
+//       if (!response.ok) {
+//         throw new Error("Network response was not ok");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => renderData(data))
+//     .catch(() => renderErrorState());
+// }
+
+async function fetchData() {
+  try {
+    const response = await fetch("https://dog.ceo/api/breeds/image/random");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    renderData(data);
+  } catch (error) {
+    renderErrorState();
+  }
+}
+
+function renderErrorState() {
+  const container = document.getElementById("data-container");
+  container.innerHTML = ""; // Clear previous data
+  container.innerHTML = "<p>Failed to load data</p>";
+  console.log("Failed to load data");
+}
+
+function renderLoadingState() {
+  const container = document.getElementById("data-container");
+  container.innerHTML = ""; // Clear previous data
+  container.innerHTML = "<p>Loading...</p>";
+  console.log("Loading...");
 }
 
 function renderData(data) {
