@@ -3,7 +3,7 @@ document.getElementById("fetch-button").addEventListener("click", fetchData);
 async function fetchData() {
   renderLoadingState();
   try {
-    const response = await fetch("https://dog.ceo/api/breeds/image/random");
+    const response = await fetch("http://localhost:3004/posts");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -32,8 +32,12 @@ function renderData(data) {
   const container = document.getElementById("data-container");
   container.innerHTML = ""; // Clear previous data
 
-  const div = document.createElement("div");
-  div.className = "item";
-  div.innerHTML = ` <img src="${data?.message}" alt="Random Dog Image">`;
-  container.appendChild(div);
+  if (data.length > 0) {
+    data.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = item.id;
+      container.appendChild(div);
+    });
+  }
 }
