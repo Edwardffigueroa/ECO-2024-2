@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
-const app = express();
+const app = express(); // Creates HTTP server
 app.use(express.json()); // utility to process JSON in requests
 app.use(cors()); // utility to allow clients to make requests from other hosts or ips
 
@@ -19,6 +21,25 @@ app.post("/user", (request, response) => {
   response.status(201).send(body); // We return the same object received and also I send a code 201 which means an object was created
 });
 
-app.listen(5050, () => {
+const httpServer = createServer(app); // Explicity creates an HTTP server from the Express app
+
+httpServer.listen(5050, () => {
+  // Starts the server on port 5050, same as before but now we are using the httpServer object
   console.log(`Server is running on http://localhost:${5050}`);
+});
+
+const io = new Server(httpServer, {
+  path: "/real-time",
+  cors: {
+    origin: "*", // Allow requests from any origin
+  },
+}); // Creates a WebSocket server, using the same HTTP server as the Express app and listening on the /real-time path
+
+io.on("connection", (socket) => {
+  console.log("a user connected"); // This will be printed every time a client connects to the
+  socket.on("chat-messages", (message) => {
+    console.log(message);
+    io.emit("chat-messages", message); // Broadcasts the message to all connected clients including the sender
+    // socket.broadcast.emit("chat-messages", message); // Broadcasts the message to all connected clients except the sender
+  });
 });

@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon server/index.js",
-    "start-player": "live-server ./client-player --port=3000",
-    "start-result": "live-server ./client-results-screen --port=3005"
+    "start-client": "live-server ./client --port=3000"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +18,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "live-server": "^1.2.2",
-    "serve": "^14.2.3"
+    "serve": "^14.2.3",
+    "socket.io": "^4.7.5"
   }
 }
