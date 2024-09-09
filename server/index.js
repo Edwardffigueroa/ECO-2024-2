@@ -20,24 +20,22 @@ const db = {
   players: [],
 };
 
-app.get("/users", (request, response) => {
-  response.send(db);
-  io.emit("chat-messages", "Hola desde el servidor"); // I can emit events to all connected clients from a single endpoint
-});
-
-app.post("/user", (request, response) => {
-  const { body } = request;
-  db.players.push(body);
-  response.status(201).send(body); // We return the same object received and also I send a code 201 which means an object was created
-});
-
 io.on("connection", (socket) => {
-  console.log("a user connected"); // This will be printed every time a client connects to the
-  socket.on("chat-messages", (message) => {
-    console.log(message);
-    io.emit("chat-messages", message); // Broadcasts the message to all connected clients including the sender
-    // socket.broadcast.emit("chat-messages", message); // Broadcasts the message to all connected clients except the sender
+  // "joinGame" listerner
+  socket.on("joinGame", (user) => {
+    db.players.push(user);
+    console.log(user);
+    io.emit("userJoined", db); // Example: Broadcasts the message to all connected clients including the sender
+    // socket.broadcast.emit("userJoined", db); // Example: Broadcasts the message to all connected clients except the sender
   });
+
+  // implement "startGame" listener
+
+  // implement "notifyMarco" listener
+
+  // implement "notifyPolo" listener
+
+  // implement "onSelectPolo" listener
 });
 
 httpServer.listen(5050, () => {
