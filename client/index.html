@@ -9,30 +9,39 @@
       type="image/x-icon"
     />
     <title>CLIENT</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-      #data-container {
-        margin-top: 20px;
-      }
-      .item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Player</h1>
-    <button id="join-button">Join Game</button>
-    <div id="data-container"></div>
-
+    <h1>MARCO-POLO Game</h1>
+    <div id="home-welcome-screen">
+      <h2>Bienvenidos</h2>
+      <p>Ingresa tu nombre de usuario para unirte al juego</p>
+      <div id="form">
+        <input type="text" id="nickname" placeholder="nickname" />
+        <button id="join-button">Join Game</button>
+      </div>
+    </div>
+    <div id="lobby-screen">
+      <h2 id="nickname-display">nickname</h2>
+      <p>
+        Esperando a que otros se unan:
+        <b id="users-count"> <b>0</b></b> usuarios en la sala
+      </p>
+      <button id="start-button">Start game</button>
+    </div>
+    <div id="game-ground">
+      <h2 id="game-nickname-display"></h2>
+      <p>Tu rol es:</p>
+      <h2 id="role-display"></h2>
+      <h2 id="shout-display"></h2>
+      <div id="pool-players"></div>
+      <button id="shout-button"></button>
+    </div>
+    <div id="game-over">
+      <h1>Game Over</h1>
+      <h2 id="game-result"></h2>
+      <button id="restart-button">Restart game</button>
+    </div>
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="index.js"></script>
   </body>
