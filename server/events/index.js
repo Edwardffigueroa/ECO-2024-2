@@ -1,7 +1,7 @@
-const { gameEvents } = require("./gameEvents")
+const { exampleEvent } = require("./exampleEvents")
 
 const handleEvents = (socket, io) => {
-  gameEvents(socket, io)
+  exampleEvent(socket, io)
 }
 
 module.exports = { handleEvents }
