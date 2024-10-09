@@ -1,5 +1,5 @@
 {
-    "watch": ["server"],
-    "ignore": ["client-player", "client-results-screen"],
+    "watch": [],
+    "ignore": [],
     "exec": "node server/server.js"
   }

@@ -6,16 +6,9 @@ app.use(express.json()); // utility to process JSON in requests
 app.use(cors()); // utility to allow clients to make requests from other hosts or ips
 const path = require("path");
 
-<<<<<<< HEAD
-const usersRouter = require("./routes/users")
-
-app.use("/", usersRouter)
-=======
 const clientApp1Path = path.resolve(__dirname, "../client-app1");
 const clientApp2Path = path.resolve(__dirname, "../client-app2");
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
-
->>>>>>> W11-clients-template
 
 // Serve Client App 1
 app.use("/app1", express.static(clientApp1Path));
@@ -33,8 +26,8 @@ app.get("/app2/*", (req, res) => {
   res.sendFile(path.join(clientApp2Path, "index.html"));
 });
 
-const playersRouter = require("./routes/players");
+const usersRouter = require("./routes/users")
 
-app.use("/players", playersRouter);
+app.use("/", usersRouter)
 
 module.exports = app;

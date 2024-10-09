@@ -1,9 +1,9 @@
 import renderScreen1 from "./screens/screen1.js";
 import renderScreen2 from "./screens/screen2.js";
-import renderScreen3 from "./screens/screen3.js";
 import socket from "./socket.js";
 
-const router = new Router({ // check this for more features with Router: https://github.com/Graidenix/vanilla-router
+const router = new Router({
+  // check this for more features with Router: https://github.com/Graidenix/vanilla-router
   mode: "hash",
   page404: (path) => {
     const app = document.getElementById("app");
@@ -23,11 +23,6 @@ router.add("/", async () => {
 router.add("/screen2", async () => {
   clearScripts();
   renderScreen2();
-});
-
-router.add("/screen3", async () => {
-  clearScripts();
-  renderScreen3();
 });
 
 router.check().addUriListener();

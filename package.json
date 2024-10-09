@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "nodemon server/server.js",
-    "start-client": "live-server ./client --port=3000"
+    "start-server": "nodemon server/server.js"
   },
   "keywords": [],
   "author": "",
